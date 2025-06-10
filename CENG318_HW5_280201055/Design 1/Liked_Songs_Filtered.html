@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Songs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #dcdcdc;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #fff;
+            border: 10px solid #111;
+            border-radius: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            /* Alt menü için padding eklendi */
+            padding: 0 20px 80px 20px;
+            height: 100%;
+            box-sizing: border-box;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Hide scrollbar */
+        .screen::-webkit-scrollbar { display: none; }
+        .screen { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 10;
+        }
+
+        .time {
+            font-weight: 600;
+            font-size: 15px;
+            padding-left: 10px;
+        }
+
+        .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            padding-right: 10px;
+        }
+
+        .artist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .artist-header .back-button {
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .artist-header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 25px;
+        }
+
+        .search-bar i {
+            color: #888;
+            margin-right: 10px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .song-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .song-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .song-info {
+            flex-grow: 1;
+        }
+
+        .song-title {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .artist-name {
+            font-size: 14px;
+            color: #666;
+            display: none;
+        }
+
+        .more-button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #aaa;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .playlist-summary {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* ALT MENÜ STİLLERİ EKLENDİ */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background-color: #ffffff;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #888;
+            font-size: 11px;
+        }
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #1DB954; }
+        
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="screen">
+
+            <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="status-icons">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
+                </div>
+            </div>
+
+            <header class="artist-header">
+                <a href="Liked_Songs.html" class="back-button"><i class="fa-solid fa-chevron-left"></i></a>
+                <h1>Liked Songs</h1>
+            </header>
+
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" value="Adamlar" placeholder="Ara">
+            </div>
+
+            <main class="song-list">
+                <div class="song-item">
+                    <img src="../album photos/koca yaşlı şişko dünya - çek sifonu.jpg" alt="Koca Yaşlı Şişko Dünya Album Art">
+                    <div class="song-info">
+                        <div class="song-title">Koca Yaşlı Şişko Dünya</div>
+                    </div>
+                    <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                </div>
+
+                <div class="song-item">
+                    <img src="../album photos/benden bana - hikaye.jpeg" alt="Benden Bana Album Art">
+                    <div class="song-info">
+                        <div class="song-title">Benden Bana</div>
+                    </div>
+                    <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                </div>
+
+                <div class="song-item">
+                    <img src="../album photos/benden bana - hikaye.jpeg" alt="Hikaye Album Art">
+                    <div class="song-info">
+                        <div class="song-title">Hikaye</div>
+                    </div>
+                    <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                </div>
+
+                <div class="song-item">
+                    <img src="../album photos/koca yaşlı şişko dünya - çek sifonu.jpg" alt="Çek Sifonu Album Art">
+                    <div class="song-info">
+                        <div class="song-title">Çek Sifonu</div>
+                    </div>
+                    <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                </div>
+            </main>
+
+            <footer class="playlist-summary">
+                4 songs • 15 minutes
+            </footer>
+
+        </div>
+        
+        <nav class="bottom-nav">
+            <a href="Search_Page.html" class="nav-item active"> <i class="fa-solid fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="Library.html" class="nav-item">
+                <i class="fa-solid fa-book"></i>
+                <span>Library</span>
+            </a>
+            <a href="Naming_Playlist.html" class="nav-item">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Create</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tracks to Playlist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #dcdcdc;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #fff;
+            border: 10px solid #111;
+            border-radius: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            flex-grow: 1;
+            /* Alt menü VE kaydet butonu için boşluk artırıldı */
+            padding: 0 20px 160px 20px; 
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .screen::-webkit-scrollbar { display: none; }
+        .screen { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .time { font-weight: 600; font-size: 15px; }
+        .status-icons { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        
+        .page-header {
+            padding: 15px 0;
+            flex-shrink: 0;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        
+        .page-header p {
+            margin: 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .track-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 5px;
+            cursor: pointer;
+        }
+        
+        .track-item .song-art {
+            width: 45px;
+            height: 45px;
+            border-radius: 4px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .track-item .song-info {
+            flex-grow: 1;
+        }
+
+        .song-title { font-weight: 500; font-size: 16px; color: #333; }
+        .artist-name { font-size: 14px; color: #666; }
+        
+        .track-item input[type="checkbox"] { display: none; }
+
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox i { display: none; color: white; font-size: 14px; }
+
+        .track-item input[type="checkbox"]:checked + .custom-checkbox {
+            background-color: #1DB954;
+            border-color: #1DB954;
+        }
+
+        .track-item input[type="checkbox"]:checked + .custom-checkbox i { display: block; }
+        
+        /* KAYDET BUTONU İÇİN BÖLÜM EKLENDİ */
+        .action-footer {
+            position: absolute;
+            bottom: 65px; /* Alt menünün yüksekliği kadar yukarıda */
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 15px 20px;
+            border-top: 1px solid #f0f0f0;
+            z-index: 100;
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ALT MENÜ STİLLERİ */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background-color: #ffffff;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #888;
+            font-size: 11px;
+        }
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #1DB954; }
+
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="screen">
+            <div class="status-bar">
+                <span class="time">10:01</span>
+                <div class="status-icons">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
+                </div>
+            </div>
+
+            <header class="page-header">
+                <h1>Playlist 1</h1>
+                <p>Choose tracks from "Liked Songs"</p>
+            </header>
+            
+            <main class="track-list">
+                <div class="track-item">
+                    <input type="checkbox" id="track1">
+                    <label class="custom-checkbox" for="track1"></label>
+                    <img class="song-art" src="../album photos/one - ed sheeran.jpg" alt="One">
+                    <div class="song-info">
+                        <div class="song-title">One</div>
+                        <div class="artist-name">Ed Sheeran</div>
+                    </div>
+                </div>
+                <div class="track-item">
+                    <input type="checkbox" id="track2">
+                    <label class="custom-checkbox" for="track2"></label>
+                    <img class="song-art" src="../album photos/metallica songs.jpeg" alt="The Unforgiven">
+                    <div class="song-info">
+                        <div class="song-title">The Unforgiven</div>
+                        <div class="artist-name">Metallica</div>
+                    </div>
+                </div>
+                <div class="track-item">
+                    <input type="checkbox" id="track3">
+                    <label class="custom-checkbox" for="track3"></label>
+                    <img class="song-art" src="../album photos/araf.jpeg" alt="Araf">
+                    <div class="song-info">
+                        <div class="song-title">Araf</div>
+                        <div class="artist-name">Mor ve Ötesi</div>
+                    </div>
+                </div>
+                <div class="track-item">
+                    <input type="checkbox" id="track4">
+                    <label class="custom-checkbox" for="track4"></label>
+                    <img class="song-art" src="../album photos/snuff.jpeg" alt="Snuff">
+                    <div class="song-info">
+                        <div class="song-title">Snuff</div>
+                        <div class="artist-name">Slipknot</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="action-footer">
+            <button class="save-button" onclick="window.location.href='New_Playlist.html'">Save</button>
+        </footer>
+
+        <nav class="bottom-nav">
+            <a href="Search_Page.html" class="nav-item">
+                <i class="fa-solid fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="Library.html" class="nav-item">
+                <i class="fa-solid fa-book"></i>
+                <span>Library</span>
+            </a>
+            <a href="Naming_Playlist.html" class="nav-item active">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Create</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

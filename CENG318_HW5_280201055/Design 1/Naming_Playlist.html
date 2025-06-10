@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Playlist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #dcdcdc;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #fff;
+            border: 10px solid #111;
+            border-radius: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            flex-grow: 1;
+            /* Alt menü için padding eklendi */
+            padding: 0 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .time { font-weight: 600; font-size: 15px; }
+        .status-icons { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        
+        .playlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            flex-shrink: 0;
+        }
+
+        .playlist-header .icon-button {
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+            width: 30px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Bu padding artık .screen tarafından yönetildiği için kaldırılabilir veya ayarlanabilir */
+            padding-bottom: 50px; 
+        }
+
+        .playlist-cover-art {
+            width: 160px;
+            height: 160px;
+            background-color: #f0f0f0;
+            border-radius: 12px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .playlist-cover-art i {
+            font-size: 80px;
+            color: #d1d1d1;
+        }
+        
+        .playlist-title-input {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 30px; 
+            background-color: transparent;
+            border-bottom: 2px solid #eee; 
+            transition: border-color 0.2s;
+        }
+
+        .playlist-title-input:focus {
+            border-bottom-color: #1DB954; 
+        }
+        
+        .create-playlist-button {
+            background-color: #f0f0f0;
+            color: #111;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .create-playlist-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* ALT MENÜ STİLLERİ EKLENDİ */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background-color: #ffffff;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #888;
+            font-size: 11px;
+        }
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #1DB954; }
+
+    </style>
+    </head>
+<body>
+    <div class="mobile-frame">
+        <div class="screen">
+            
+            <div class="status-bar">
+                <span class="time">9:56</span>
+                <div class="status-icons">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
+                </div>
+            </div>
+
+            <header class="playlist-header">
+                <a href="Library.html" class="icon-button"><i class="fa-solid fa-chevron-left"></i></a>
+                <a href="#" class="icon-button"><i class="fa-solid fa-ellipsis-h"></i></a>
+            </header>
+            
+            <main class="main-content">
+                <div>
+                    <div class="playlist-cover-art">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+
+                    <input type="text" class="playlist-title-input" value="Playlist 1">
+                    
+                    <button class="create-playlist-button" onclick="window.location.href='Creating_Playlist.html'">Create Playlist</button>
+                </div>
+            </main>
+
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="Search_Page.html" class="nav-item">
+                <i class="fa-solid fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="Library.html" class="nav-item">
+                <i class="fa-solid fa-book"></i>
+                <span>Library</span>
+            </a>
+            <a href="Naming_Playlist.html" class="nav-item active"> <i class="fa-solid fa-plus-circle"></i>
+                <span>Create</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

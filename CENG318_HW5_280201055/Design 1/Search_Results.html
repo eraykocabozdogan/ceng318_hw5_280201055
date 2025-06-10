@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #dcdcdc;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #fff;
+            border: 10px solid #111;
+            border-radius: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            flex-grow: 1;
+            padding: 0 20px 80px 20px;
+            overflow-y: auto;
+        }
+
+        .screen::-webkit-scrollbar { display: none; }
+        .screen { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+        }
+
+        .time { font-weight: 600; font-size: 15px; }
+        .status-icons { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        
+        .search-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            flex-grow: 1;
+        }
+
+        .search-bar i { color: #888; margin-right: 10px; }
+        .search-bar input {
+            border: none; background: none; outline: none;
+            width: 100%; font-size: 16px; color: #333;
+        }
+
+        .results-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .result-item .item-art {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            background-color: #eee;
+            flex-shrink: 0;
+        }
+
+        .result-item .item-info {
+            flex-grow: 1;
+        }
+
+        .item-title {
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .item-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .more-button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #aaa;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        /* ALT MENÜ STİLLERİ */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background-color: #ffffff;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #888;
+            font-size: 11px;
+        }
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #1DB954; }
+
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="screen">
+            <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="status-icons">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
+                </div>
+            </div>
+
+            <header class="search-header">
+                <a href="Search_Page.html" class="back-button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <div class="search-bar">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" value="Metallica" placeholder="Search">
+                </div>
+            </header>
+
+            <main>
+                <section class="results-section">
+                    <div class="section-title">Songs</div>
+                    
+                    <a href="#" class="result-item">
+                        <img class="item-art" src="../album photos/metallica.jpeg" alt="The Unforgiven">
+                        <div class="item-info">
+                            <div class="item-title">The Unforgiven</div>
+                            <div class="item-subtitle">Metallica</div>
+                        </div>
+                        <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                    </a>
+
+                    <a href="#" class="result-item">
+                        <img class="item-art" src="../album photos/metallica.jpeg" alt="Enter Sandman">
+                        <div class="item-info">
+                            <div class="item-title">Enter Sandman</div>
+                            <div class="item-subtitle">Metallica</div>
+                        </div>
+                        <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                    </a>
+
+                    <a href="#" class="result-item">
+                        <img class="item-art" src="https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_-_Metallica_cover.jpg" alt="Nothing Else Matters">
+                        <div class="item-info">
+                            <div class="item-title">Nothing Else Matters</div>
+                            <div class="item-subtitle">Metallica</div>
+                        </div>
+                        <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                    </a>
+                </section>
+
+                <section class="results-section">
+                    <div class="section-title">Artists</div>
+                    
+                    <a href="#" class="result-item">
+                        <img class="item-art" src="https://www.revolvermag.com/sites/default/files/styles/image_750_w/public/media/images/artist/gettyimages-1159302917.jpg?itok=3v2yf52H" alt="Metallica" style="border-radius: 50%;">
+                        <div class="item-info">
+                            <div class="item-title">Metallica</div>
+                            <div class="item-subtitle">Artist</div>
+                        </div>
+                        <button class="more-button"><i class="fa-solid fa-ellipsis"></i></button>
+                    </a>
+                </section>
+            </main>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="Search_Page.html" class="nav-item active">
+                <i class="fa-solid fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="Library.html" class="nav-item">
+                <i class="fa-solid fa-book"></i>
+                <span>Library</span>
+            </a>
+            <a href="Naming_Playlist.html" class="nav-item">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Create</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

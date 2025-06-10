@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #dcdcdc;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #fff;
+            border: 10px solid #111;
+            border-radius: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 0 20px 80px 20px; /* Alttaki navigasyon için boşluk */
+        }
+
+        .screen::-webkit-scrollbar { display: none; }
+        .screen { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+            background-color: #fff;
+        }
+
+        .time { font-weight: 600; font-size: 15px; padding-left: 10px; }
+        .status-icons { display: flex; align-items: center; gap: 8px; font-size: 14px; padding-right: 10px; }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 15px 0;
+        }
+
+        .search-bar i { color: #888; margin-right: 10px; }
+        .search-bar input {
+            border: none; background: none; outline: none;
+            width: 100%; font-size: 16px; color: #333;
+        }
+
+        .discover-section { margin-bottom: 30px; }
+        .discover-section h2 { font-size: 22px; font-weight: 700; margin: 0 0 15px 0; }
+
+        /* TÜM KATEGORİLER İÇİN ORTAK YATAY LİSTE YAPISI */
+        .horizontal-showcase {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px; 
+        }
+        .horizontal-showcase::-webkit-scrollbar { display: none; }
+        .horizontal-showcase { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* TÜM KUTUCUKLAR İÇİN ORTAK ANA YAPI */
+        .showcase-item {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .showcase-item .square {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex; /* İkonları ortalamak için */
+            justify-content: center; /* İkonları ortalamak için */
+            align-items: center; /* İkonları ortalamak için */
+            object-fit: cover; /* Resimlerin bozulmasını engeller */
+        }
+        
+        /* ÖZELLİKLEŞTİRMELER */
+        /* Artists için resim kenarlığı */
+        .showcase-item img.square { border: 1px solid #eee; }
+
+        /* Moods için arkaplan ve ikon rengi/boyutu */
+        .mood-bg { background-color: #f5f5f5; font-size: 40px; }
+        .mood-bg .fa-bolt { color: #f9ca24; }
+        .mood-bg .fa-cloud-sun { color: #48dbfb; }
+        .mood-bg .fa-leaf { color: #1dd1a1; }
+        .mood-bg .fa-moon { color: #5758BB; }
+
+        /* Recommended için arkaplan renkleri ve ikon rengi */
+        .recommended-bg { color: white; font-size: 36px; }
+        .card-rock { background-color: #e55039; }
+        .card-pop { background-color: #3c40c6; }
+        .card-go { background-color: #05c46b; }
+        .card-club { background-color: #9c88ff; }
+
+
+        /* ALT MENÜ */
+        .bottom-nav {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 65px; background-color: #ffffff; border-top: 1px solid #f0f0f0;
+            display: flex; justify-content: space-around; align-items: center; padding-bottom: 5px;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 4px; text-decoration: none; color: #888; font-size: 11px;
+        }
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #1DB954; }
+    </style>
+</head>
+<body>
+    <div class="mobile-frame">
+        <div class="screen">
+            
+            <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="status-icons">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-full"></i>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="What do you want to listen to?" onclick="window.location.href='Search_Results.html'">
+            </div>
+
+            <main>
+                <section class="discover-section">
+                    <h2>Moods</h2>
+                    <div class="horizontal-showcase">
+                        <a href="#" class="showcase-item">
+                            <div class="square mood-bg"><i class="fa-solid fa-bolt"></i></div>
+                            <span>Energy</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <div class="square mood-bg"><i class="fa-solid fa-cloud-sun"></i></div>
+                            <span>Chill</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                           <div class="square mood-bg"><i class="fa-solid fa-leaf"></i></div>
+                            <span>Mellow</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <div class="square mood-bg"><i class="fa-solid fa-moon"></i></div>
+                            <span>Sad</span>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="discover-section">
+                    <h2>Artists</h2>
+                    <div class="horizontal-showcase">
+                        <a href="#" class="showcase-item">
+                            <img class="square" src="../album photos/adamlar.jpeg" alt="Adamlar">
+                            <span>Adamlar</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <img class="square" src="../album photos/metallica.jpeg" alt="Metallica">
+                            <span>Metallica</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <img class="square" src="../album photos/mor ve ötesi.jpg" alt="Mor ve Ötesi">
+                            <span>Mor ve Ötesi</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <img class="square" src="../album photos/slipknot.jpeg" alt="Slipknot">
+                            <span>Slipknot</span>
+                        </a>
+                    </div>
+                </section>
+                
+                <section class="discover-section">
+                    <h2>Recommended</h2>
+                    <div class="horizontal-showcase">
+                         <a href="#" class="showcase-item">
+                            <div class="square recommended-bg card-rock"><i class="fa-solid fa-guitar"></i></div>
+                            <span>Rock</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <div class="square recommended-bg card-pop"><i class="fa-solid fa-microphone"></i></div>
+                            <span>Pop</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <div class="square recommended-bg card-go"><i class="fa-solid fa-person-running"></i></div>
+                            <span>Go-to</span>
+                        </a>
+                        <a href="#" class="showcase-item">
+                            <div class="square recommended-bg card-club"><i class="fa-solid fa-martini-glass"></i></div>
+                            <span>Club</span>
+                        </a>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <nav class="bottom-nav">
+            <a href="Search_Page.html" class="nav-item active">
+                <i class="fa-solid fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="Library.html" class="nav-item">
+                <i class="fa-solid fa-book"></i>
+                <span>Library</span>
+            </a>
+            <a href="Naming_Playlist.html" class="nav-item">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>Create</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
